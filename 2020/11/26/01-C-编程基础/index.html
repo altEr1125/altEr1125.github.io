@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -330,7 +330,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">484</span> In Total
+              Words <span class="post-count">483</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -390,8 +390,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p>[toc]</p>
-<h2 id="数据的输入与输出"><a href="#数据的输入与输出" class="headerlink" title="数据的输入与输出"></a>数据的输入与输出</h2><p>数据的输入与输出，并非C++程序语言本身定义的一部分（此精神同C语言），而是由C++的一套面向对象的类层次体系提供支持，并作为C++标准库的一员。</p>
+        <h2 id="数据的输入与输出"><a href="#数据的输入与输出" class="headerlink" title="数据的输入与输出"></a>数据的输入与输出</h2><p>数据的输入与输出，并非C++程序语言本身定义的一部分（此精神同C语言），而是由C++的一套面向对象的类层次体系提供支持，并作为C++标准库的一员。</p>
 <h2 id="class的定义"><a href="#class的定义" class="headerlink" title="class的定义"></a>class的定义</h2><h2 id="using-namespace-std"><a href="#using-namespace-std" class="headerlink" title="using namespace std"></a>using namespace std</h2><p>C++编程时几乎每次都敲上using namespace std;但这行代码究竟有什么作用呢？<br>C++标准程序库中的所有标识符都被定义于一个名为std的namespace中。早些的编码将标准库功能定义在全局空间里（所以并不需要注明使用什么命名空间），声明在带.h后缀的头文件里。C++标准为了和C区别开，也为了正确地使用命名空间，规定头文件不使用后缀.h。因此，当使用&lt;iostream.h&gt;时，相当于在C中调用库函数，使用的是全局命名空间，也就是早期的C++实现。当使用时，该头文件没有定义全局命名空间，必须使用namespace std，指明在哪里的命名空间，这样才能使用类似于cout这样的C++标识符。</p>
 <p>由于namespace的概念，使用C++标准程序库的任何标识符时，可以有三种选择：</p>
 <p>1.直接指定标识符</p>
