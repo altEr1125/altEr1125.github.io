@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/categories/index.html</loc>
+    
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/tags/index.html</loc>
+    
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/about/index.html</loc>
+    
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/2020/11/26/01-C-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2020-11-26</lastmod>
@@ -16,28 +37,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite-url/about/index.html</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite-url/archive/index.html</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite-url/tags/index.html</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite-url/categories/index.html</loc>
     
     <lastmod>2020-09-20</lastmod>
     
