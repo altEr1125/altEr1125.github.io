@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/2020/11/26/01-C-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2020-11-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/2020/04/17/Hexo-Theme-LiveMyLife/</loc>
     
     <lastmod>2020-09-20</lastmod>
@@ -16,13 +23,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite-url/archive/index.html</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite-url/about/index.html</loc>
     
     <lastmod>2020-09-20</lastmod>
@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite-url/categories/index.html</loc>
+    <loc>http://yoursite-url/archive/index.html</loc>
     
     <lastmod>2020-09-20</lastmod>
     
@@ -38,6 +38,13 @@
   
   <url>
     <loc>http://yoursite-url/tags/index.html</loc>
+    
+    <lastmod>2020-09-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/categories/index.html</loc>
     
     <lastmod>2020-09-20</lastmod>
     
@@ -51,6 +58,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://yoursite-url/tags/C/</loc>
+    <lastmod>2020-11-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://yoursite-url/tags/Hexo/</loc>
@@ -67,6 +81,13 @@
   </url>
   
 
+  
+  <url>
+    <loc>http://yoursite-url/categories/Learning-C/</loc>
+    <lastmod>2020-11-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://yoursite-url/categories/Hexo-Theme-LiveMyLife/</loc>
