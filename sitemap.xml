@@ -46,7 +46,7 @@
 
   <url>
     <loc>http://yoursite-url/</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -54,14 +54,14 @@
   
   <url>
     <loc>http://yoursite-url/tags/C/</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Essential-C/</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -70,14 +70,14 @@
   
   <url>
     <loc>http://yoursite-url/categories/Learning-C/</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/categories/Learning-C/Essential-C/</loc>
-    <lastmod>2020-11-26</lastmod>
+    <lastmod>2020-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
