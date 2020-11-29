@@ -71,12 +71,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../css/highlight.css">
-<link rel="stylesheet" href="../css/widget.css">
-<link rel="stylesheet" href="../css/rocket.css">
-<link rel="stylesheet" href="../css/signature.css">
-<link rel="stylesheet" href="../css/catalog.css">
-<link rel="stylesheet" href="../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -138,10 +138,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/archives/">
+  <link rel="canonical" href="http://yoursite-url/2020/11/28/Boost-Asio的学习-2-IO服务与IO对象/">
   <title>
     
-    altEr
+    Boost Asio的学习-2 IO服务与IO对象 - altEr
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('/img/header_img/archive_bg2.jpg');
+       /*post*/
+        background-image: url('/img/header_img/lml_bg.jpg');
       
     }
 
@@ -308,10 +308,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>altEr</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">How do you know?  Have you tried?</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#boost asio" title="boost asio">boost asio</a>
+              
+            </div>
+            <h1>Boost Asio的学习-2 IO服务与IO对象</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by altEr on
+              2020-11-28
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">5</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.3k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -352,326 +382,251 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <p>使用 Boost.Asio 进行异步数据处理的应用程序基于两个概念：<strong>I/O 服务和 I/O 对象</strong>。 I/O 服务抽象了操作系统的接口，允许第一时间进行异步数据处理，而 I/O 对象则用于初始化特定的操作。 鉴于 Boost.Asio 只提供了一个名为 <code>boost::asio::io_service</code> 的类作为 I/O 服务，它针对所支持的每一个操作系统都分别实现了优化的类，另外库中还包含了针对不同 I/O 对象的几个类。 其中，类 <code>boost::asio::ip::tcp::socket</code> 用于通过网络发送和接收数据，而类 <code>boost::asio::deadline_timer</code> 则提供了一个计时器，用于测量某个固定时间点到来或是一段指定的时长过去了。 以下第一个例子中就使用了计时器，因为与 Asio 所提供的其它 I/O 对象相比较而言，它不需要任何有关于网络编程的知识。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/asio.hpp&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 s."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  boost::asio::io_service io_service; </span><br><span class="line">  boost::<span class="function">asio::deadline_timer <span class="title">timer</span><span class="params">(io_service, boost::posix_time::seconds(<span class="number">5</span>))</span></span>; </span><br><span class="line">  timer.async_wait(handler); </span><br><span class="line">  io_service.<span class="built_in">run</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数 <code>main()</code> 首先定义了一个 I/O 服务 io_service，用于初始化 I/O 对象 timer。 就像 <code>boost::asio::deadline_timer</code> 那样，所有 I/O 对象通常都需要一个 I/O 服务作为它们的构造函数的第一个参数。 由于 timer 的作用类似于一个闹钟，所以 <code>boost::asio::deadline_timer</code> 的构造函数可以传入第二个参数，用于表示在某个时间点或是在某段时长之后闹钟停止。 以上例子指定了五秒的时长，该闹钟在 timer 被定义之后立即开始计时。</p>
+<p>虽然我们可以调用一个在五秒后返回的函数，但是通过调用方法 <code>async_wait()</code> 并传入 <code>handler()</code> 函数的名字作为唯一参数，可以让 Asio 启动一个异步操作。 请留意，我们只是传入了 <code>handler()</code> 函数的名字，而该函数本身并没有被调用。</p>
+<p><code>async_wait()</code> 的好处是，该函数调用会立即返回，而不是等待五秒钟。 一旦闹钟时间到，作为参数所提供的函数就会被相应调用。 因此，应用程序可以在调用了 <code>async_wait()</code> 之后执行其它操作，而不是阻塞在这里。</p>
+<p>像 <code>async_wait()</code> 这样的方法被称为是非阻塞式的。 I/O 对象通常还提供了阻塞式的方法，可以让执行流在特定操作完成之前保持阻塞。 例如，可以调用阻塞式的 <code>wait()</code> 方法，取代 <code>boost::asio::deadline_timer</code> 的调用。 由于它会阻塞调用，所以它不需要传入一个函数名，而是在指定时间点或指定时长之后返回。</p>
+<p>再看看上面的源代码，可以留意到在调用 <code>async_wait()</code> 之后，又在 I/O 服务之上调用了一个名为 <code>run()</code> 的方法。这是必须的，因为控制权必须被操作系统接管，才能在五秒之后调用 <code>handler()</code> 函数。</p>
+<p><code>async_wait()</code> 会启动一个异步操作并立即返回，而 run() 则是阻塞的。因此调用 <code>run()</code> 后程序执行会停止。 具有讽刺意味的是，许多操作系统只是通过阻塞函数来支持异步操作。 以下例子显示了为什么这个限制通常不会成为问题。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/asio.hpp&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler1</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 s."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler2</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"10 s."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  boost::asio::io_service io_service; </span><br><span class="line">  boost::<span class="function">asio::deadline_timer <span class="title">timer1</span><span class="params">(io_service, boost::posix_time::seconds(<span class="number">5</span>))</span></span>; </span><br><span class="line">  timer1.async_wait(handler1); </span><br><span class="line">  boost::<span class="function">asio::deadline_timer <span class="title">timer2</span><span class="params">(io_service, boost::posix_time::seconds(<span class="number">10</span>))</span></span>; </span><br><span class="line">  timer2.async_wait(handler2); </span><br><span class="line">  io_service.<span class="built_in">run</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的程序用了两个 <code>boost::asio::deadline_timer</code> 类型的 I/O 对象。 第一个 I/O 对象表示一个五秒后触发的闹钟，而第二个则表示一个十秒后触发的闹钟。 每一段指定时长过去后，都会相应地调用函数 <code>handler1()</code> 和 <code>handler2()</code>。</p>
+<p>在 <code>main()</code> 的最后，再次在唯一的 I/O 服务之上调用了 <code>run()</code> 方法。 如前所述，这个函数将阻塞执行，把控制权交给操作系统以接管异步处理。 在操作系统的帮助下，<code>handler1()</code> 函数会在五秒后被调用，而 <code>handler2()</code> 函数则在十秒后被调用。</p>
+<p>乍一看，你可能会觉得有些奇怪，为什么异步处理还要调用阻塞式的 <code>run()</code> 方法。 然而，由于应用程序必须防止被中止执行，所以这样做实际上不会有任何问题。 如果 <code>run()</code> 不是阻塞的，<code>main()</code> 就会结束从而中止该应用程序。 如果应用程序不应被阻塞，那么就应该在一个新的线程内部调用 <code>run()</code>，它自然就会仅仅阻塞那个线程。</p>
+<p>一旦特定的 I/O 服务的所有异步操作都完成了，控制权就会返回给 <code>run()</code> 方法，然后它就会返回。 以上两个例子中，应用程序都会在闹钟到时间后马上结束。</p>
 
-      
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-5-resolver和endpoint/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-5 resolver和endpoint
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="previous">
+            <a href="/2020/11/28/Boost-Asio的学习-3-可扩展性与多线程/" data-toggle="tooltip" data-placement="top" title="Boost Asio的学习-3 可扩展性与多线程">&larr; Previous Post</a>
           </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-4-网络编程/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-4 网络编程
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-3-可扩展性与多线程/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-3 可扩展性与多线程
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-2-IO服务与IO对象/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-2 IO服务与IO对象
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-1-概述/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-1 概述
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/26/01-C-编程基础/" style="color: #0085a1">
-              <span>
-                01 C++编程基础
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="next">
+            <a href="/2020/11/28/Boost-Asio的学习-1-概述/" data-toggle="tooltip" data-placement="top" title="Boost Asio的学习-1 概述">Next Post &rarr;</a>
           </li>
           
         </ul>
+
+        
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Boost Asio的学习-2 IO服务与IO对象&body=Hi,I found this website and thought you might like it http://yoursite-url/2020/11/28/Boost-Asio的学习-2-IO服务与IO对象/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+<!-- gitalk start -->
+<!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+<div id="gitalk-container"></div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+<script src="/js/comment/gitalk.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: '',
+    id: 'Sat Nov 28 2020 10:07:25 GMT+0800', // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    perPage: 10 ,
+    pagerDirection: 'last',
+    createIssueManually: false ,
+    language: 'en'
+  });
+  gitalk.render('gitalk-container');
+
+  var gtFolded = () => {
+    setTimeout(function() {
+      let markdownBody = document.getElementsByClassName("markdown-body");
+      let list = Array.from(markdownBody);
+      list.forEach(item => {
+        if (item.clientHeight > 250) {
+          item.classList.add('gt-comment-body-folded');
+          item.style.maxHeight = '250px';
+          item.title = 'Click to Expand';
+          item.onclick = function() {
+            item.classList.remove('gt-comment-body-folded');
+            item.style.maxHeight = '';
+            item.title = '';
+            item.onclick = null;
+          };
+        }
+      })
+    }, 800);
+  }
+</script>
+
+<!-- gitalk end -->
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
       </div>
-      
 
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
 
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
         
-<!-- <h5>VISITORS</h5> -->
-<h5><a href="/">VISITORS</a></h5>
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
     
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#boost asio" title="boost asio" rel="5">boost asio</a>
-    
-    
-    
-    <a href="/tags/#C++" title="C++" rel="1">C++</a>
-    
-    
-    
-    <a href="/tags/#Essential C++" title="Essential C++" rel="1">Essential C++</a>
-    
-    
-    
-    <a href="/tags/#resolve" title="resolve" rel="1">resolve</a>
-    
-    
-    
-    <a href="/tags/#endpoint" title="endpoint" rel="1">endpoint</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/fatpeople.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>on the way</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/altEr1125">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
         
-<!-- <h5>RECENT POSTS</h5> -->
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-5-resolver%E5%92%8Cendpoint/">
-      <li>Boost Asio的学习-5 resolver和endpoint</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-4-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-      <li>Boost Asio的学习-4 网络编程</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-      <li>Boost Asio的学习-3 可扩展性与多线程</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-2-IO%E6%9C%8D%E5%8A%A1%E4%B8%8EIO%E5%AF%B9%E8%B1%A1/">
-      <li>Boost Asio的学习-2 IO服务与IO对象</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-1-%E6%A6%82%E8%BF%B0/">
-      <li>Boost Asio的学习-1 概述</li>
-    </a>
-    
-  </ul>
-</div>
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#boost asio" title="boost asio">boost asio</a>
+            
+          </div>
+        </section>
+        
 
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-
-        <hr>
-    
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archives/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="2020/11/">November 2020</a><span class="archive-list-count">6</span></li></ul>
+      </div>
     </div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Boost Asio">
-      <li>Boost Asio</li>
-    </a>
-    
-    <a href="/categories/#Learning C++">
-      <li>Learning C++</li>
-    </a>
-    
-    <a href="/categories/#Essential C++">
-      <li>Essential C++</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-    
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->

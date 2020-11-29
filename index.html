@@ -210,14 +210,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/about/">About</a>
           </li>
           
           
 
           
           <li>
-            <a href="/about/">About</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -383,6 +383,49 @@
   
 
 
+  <a href="/2020/11/28/Boost-Asio的学习-5-resolver和endpoint/">
+    <h2 class="post-title">
+      Boost Asio的学习-5 resolver和endpoint
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      tcp::resolver一般和tcp::resolver::query结合用，通过query这个词顾名思义就知道它是用来查询socket的相应信息，一般而言我们关心socket的东西有address，port而已，通过tcp::resolver很容易实现设置和查询，它通过query把字符串格式的ip如192.168.0.200或主机名http://localhost，端口“8080”等转化......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#boost asio" title="boost asio">boost asio</a>
+    
+    <a href="/tags/#resolve" title="resolve">resolve</a>
+    
+    <a href="/tags/#endpoint" title="endpoint">endpoint</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <div class="top">
+    <div class="iconfont icon-hot animated infinite tada"></div>
+  </div>
+  
+  <!-- top end -->
+  
+
+
   <a href="/2020/11/26/01-C-编程基础/">
     <h2 class="post-title">
       01 C++编程基础
@@ -405,6 +448,158 @@
     <a href="/tags/#C++" title="C++">C++</a>
     
     <a href="/tags/#Essential C++" title="Essential C++">Essential C++</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/11/28/Boost-Asio的学习-4-网络编程/">
+    <h2 class="post-title">
+      Boost Asio的学习-4 网络编程
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      虽然 Boost.Asio 是一个可以异步处理任何种类数据的库，但是它主要被用于网络编程。 这是由于，事实上 Boost.Asio 在加入其它 I/O 对象之前很久就已经支持网络功能了。 网络功能是异步处理的一个很好的例子，因为通过网络进行数据传输可能会需要较长时间，从而不能直接获得确认或错误条件。
+Boost.Asio 提供了多个 I/O 对象以开发网络应用。 以下例子使用了 boost:......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#boost asio" title="boost asio">boost asio</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/11/28/Boost-Asio的学习-3-可扩展性与多线程/">
+    <h2 class="post-title">
+      Boost Asio的学习-3 可扩展性与多线程
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      像 Boost.Asio 这样的库通常是为了令应用程序具有更高的效率。 应用程序不需要等待特定的函数执行完成，而可以在期间执行其它任务，如开始另一个需要较长时间的操作。
+可扩展性是指，一个应用程序从新增资源有效地获得好处的能力。 如果那些执行时间较长的操作不应该阻塞其它操作的话，那么建议使用 Boost.Asio. 由于现今的PC机通常都具有多核处理器，所以线程的应用可以进一步提高一个基于 ......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#boost asio" title="boost asio">boost asio</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/11/28/Boost-Asio的学习-2-IO服务与IO对象/">
+    <h2 class="post-title">
+      Boost Asio的学习-2 IO服务与IO对象
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      使用 Boost.Asio 进行异步数据处理的应用程序基于两个概念：I/O 服务和 I/O 对象。 I/O 服务抽象了操作系统的接口，允许第一时间进行异步数据处理，而 I/O 对象则用于初始化特定的操作。 鉴于 Boost.Asio 只提供了一个名为 boost::asio::io_service 的类作为 I/O 服务，它针对所支持的每一个操作系统都分别实现了优化的类，另外库中还包含了针对......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#boost asio" title="boost asio">boost asio</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/11/28/Boost-Asio的学习-1-概述/">
+    <h2 class="post-title">
+      Boost Asio的学习-1 概述
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      
+Boost官方文档第7章，是介绍Boost C++库Asio的。
+
+
+首先要知道什么是异步？什么是同步？
+
+1.概述Asio支持I/O对象进行同步和异步的操作。
+1） 调用者调用I/O对象的connect函数开始连接操作，socket.connect(server_endpoint)；
+2） I/O对象将连接请求传递给io_service；
+3） io_service调用操作系统函数；
+4......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#boost asio" title="boost asio">boost asio</a>
     
   </div>
   
@@ -458,11 +653,23 @@
   <div class="tags">
     
     
+    <a href="/tags/#boost asio" title="boost asio" rel="5">boost asio</a>
+    
+    
+    
     <a href="/tags/#C++" title="C++" rel="1">C++</a>
     
     
     
     <a href="/tags/#Essential C++" title="Essential C++" rel="1">Essential C++</a>
+    
+    
+    
+    <a href="/tags/#resolve" title="resolve" rel="1">resolve</a>
+    
+    
+    
+    <a href="/tags/#endpoint" title="endpoint" rel="1">endpoint</a>
     
     
   </div>
@@ -525,8 +732,24 @@
 <div class="widget">
   <ul>
     
-    <a href="2020/11/26/01-C-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-      <li>01 C++编程基础</li>
+    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-5-resolver%E5%92%8Cendpoint/">
+      <li>Boost Asio的学习-5 resolver和endpoint</li>
+    </a>
+    
+    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-4-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+      <li>Boost Asio的学习-4 网络编程</li>
+    </a>
+    
+    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+      <li>Boost Asio的学习-3 可扩展性与多线程</li>
+    </a>
+    
+    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-2-IO%E6%9C%8D%E5%8A%A1%E4%B8%8EIO%E5%AF%B9%E8%B1%A1/">
+      <li>Boost Asio的学习-2 IO服务与IO对象</li>
+    </a>
+    
+    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-1-%E6%A6%82%E8%BF%B0/">
+      <li>Boost Asio的学习-1 概述</li>
     </a>
     
   </ul>
@@ -544,7 +767,7 @@
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archives/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/11/">November 2020</a><span class="archive-list-count">6</span></li></ul>
     </div>
 
 
@@ -556,6 +779,10 @@
 <h5><a href="/categories/">CATEGORIES</a></h5>
 <div class="widget">
   <ul>
+    
+    <a href="/categories/#Boost Asio">
+      <li>Boost Asio</li>
+    </a>
     
     <a href="/categories/#Learning C++">
       <li>Learning C++</li>

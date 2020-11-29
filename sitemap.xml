@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-4-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    
+    <lastmod>2020-11-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    
+    <lastmod>2020-11-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-2-IO%E6%9C%8D%E5%8A%A1%E4%B8%8EIO%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2020-11-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-1-%E6%A6%82%E8%BF%B0/</loc>
+    
+    <lastmod>2020-11-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-5-resolver%E5%92%8Cendpoint/</loc>
+    
+    <lastmod>2020-11-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/archive/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
@@ -53,6 +88,13 @@
 
   
   <url>
+    <loc>http://yoursite-url/tags/boost-asio/</loc>
+    <lastmod>2020-11-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/tags/C/</loc>
     <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
@@ -66,7 +108,28 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://yoursite-url/tags/resolve/</loc>
+    <lastmod>2020-11-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/tags/endpoint/</loc>
+    <lastmod>2020-11-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>http://yoursite-url/categories/Boost-Asio/</loc>
+    <lastmod>2020-11-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://yoursite-url/categories/Learning-C/</loc>

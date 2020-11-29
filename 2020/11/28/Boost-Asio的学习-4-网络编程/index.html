@@ -71,12 +71,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../css/highlight.css">
-<link rel="stylesheet" href="../css/widget.css">
-<link rel="stylesheet" href="../css/rocket.css">
-<link rel="stylesheet" href="../css/signature.css">
-<link rel="stylesheet" href="../css/catalog.css">
-<link rel="stylesheet" href="../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -138,10 +138,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/archives/">
+  <link rel="canonical" href="http://yoursite-url/2020/11/28/Boost-Asio的学习-4-网络编程/">
   <title>
     
-    altEr
+    Boost Asio的学习-4 网络编程 - altEr
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('/img/header_img/archive_bg2.jpg');
+       /*post*/
+        background-image: url('/img/header_img/lml_bg.jpg');
       
     }
 
@@ -308,10 +308,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>altEr</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">How do you know?  Have you tried?</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#boost asio" title="boost asio">boost asio</a>
+              
+            </div>
+            <h1>Boost Asio的学习-4 网络编程</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by altEr on
+              2020-11-28
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">7</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.9k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -352,326 +382,255 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <p>虽然 Boost.Asio 是一个可以异步处理任何种类数据的库，但是它主要被用于网络编程。 这是由于，事实上 Boost.Asio 在加入其它 I/O 对象之前很久就已经支持网络功能了。 网络功能是异步处理的一个很好的例子，因为通过网络进行数据传输可能会需要较长时间，从而不能直接获得确认或错误条件。</p>
+<p>Boost.Asio 提供了多个 I/O 对象以开发网络应用。 以下例子使用了 <code>boost::asio::ip::tcp::socket</code> 类来建立与中另一台PC的连接，并下载 ‘Highscore’ 主页；就像一个浏览器在指向 <a href="http://www.highscore.de" target="_blank" rel="noopener">www.highscore.de</a> 时所要做的。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/asio.hpp&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/array.hpp&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt; </span></span></span><br><span class="line"></span><br><span class="line">boost::asio::io_service io_service; </span><br><span class="line">boost::asio::ip::<span class="function">tcp::resolver <span class="title">resolver</span><span class="params">(io_service)</span></span>; </span><br><span class="line">boost::asio::ip::<span class="function">tcp::socket <span class="title">sock</span><span class="params">(io_service)</span></span>; </span><br><span class="line">boost::<span class="built_in">array</span>&lt;<span class="keyword">char</span>, 4096&gt; <span class="built_in">buffer</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">read_handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec, <span class="built_in">std</span>::<span class="keyword">size_t</span> bytes_transferred)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (!ec) </span><br><span class="line">  &#123; </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">string</span>(<span class="built_in">buffer</span>.data(), bytes_transferred) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; </span><br><span class="line">    sock.async_read_some(boost::asio::<span class="built_in">buffer</span>(<span class="built_in">buffer</span>), read_handler); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">connect_handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (!ec) </span><br><span class="line">  &#123; </span><br><span class="line">    boost::asio::<span class="built_in">write</span>(sock, boost::asio::<span class="built_in">buffer</span>(<span class="string">"GET / HTTP 1.1\r\nHost: highscore.de\r\n\r\n"</span>)); </span><br><span class="line">    sock.async_read_some(boost::asio::<span class="built_in">buffer</span>(<span class="built_in">buffer</span>), read_handler); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resolve_handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec, boost::asio::ip::tcp::resolver::iterator it)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (!ec) </span><br><span class="line">  &#123; </span><br><span class="line">    sock.async_connect(*it, connect_handler); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  boost::asio::ip::tcp::<span class="function">resolver::query <span class="title">query</span><span class="params">(<span class="string">"www.highscore.de"</span>, <span class="string">"80"</span>)</span></span>; </span><br><span class="line">  resolver.async_resolve(query, resolve_handler); </span><br><span class="line">  io_service.<span class="built_in">run</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
+<p>这个程序最明显的部分是三个句柄的使用：<code>connect_handler()</code> 和 <code>read_handler()</code> 函数会分别在连接被建立后以及接收到数据后被调用。 那么为什么需要 <code>resolve_handler()</code> 函数呢？</p>
+<p>互联网使用了所谓的IP地址来标识每台PC。 IP地址实际上只是一长串数字，难以记住。 而记住象 <a href="http://www.highscore.de" target="_blank" rel="noopener">www.highscore.de</a> 这样的名字就容易得多。 为了在互联网上使用类似的名字，需要通过一个叫作域名解析的过程将它们翻译成相应的IP地址。 这个过程由所谓的域名解析器来完成，对应的 I/O 对象是：<code>boost::asio::ip::tcp::resolver</code>,由于域名解析不是发生在本地的，所以它也被实现为一个异步操作。一旦域名解析成功或被某个错误中断，<code>resolve_handler()</code> 函数就会被调用。<br>因为接收数据需要一个成功的连接，进而需要一次成功的域名解析，所以这三个不同的异步操作要以三个不同的句柄来启动。 <code>resolve_handler()</code> 访问 I/O 对象 sock，用由迭代器 <strong>it</strong> 所提供的解析后地址创建一个连接。 而 sock 也在 <code>connect_handler()</code> 的内部被使用，发送 HTTP 请求并启动数据的接收。 因为所有这些操作都是异步的，各个句柄的名字被作为参数传递。 取决于各个句柄，需要相应的其它参数，如指向解析后地址的迭代器 it 或用于保存接收到的数据的缓冲区 buffer。</p>
+<p>开始执行后，该应用将创建一个类型为 <code>boost::asio::ip::tcp::resolver::query</code> 的对象 query，表示一个查询，其中含有名字 <a href="http://www.highscore.de" target="_blank" rel="noopener">www.highscore.de</a> 以及互联网常用的端口80。 这个查询被传递给 <code>async_resolve()</code> 方法以解析该名字。 最后，<code>main()</code> 只要调用 I/O 服务的 <code>run()</code> 方法，将控制交给操作系统进行异步操作即可。</p>
+<p>当域名解析的过程完成后，<code>resolve_handler()</code> 被调用，检查域名是否能被解析。 如果解析成功，则存有错误条件的对象 ec 被设为0。 只有在这种情况下，才会相应地访问 socket 以创建连接。 服务器的地址是通过类型为 <code>boost::asio::ip::tcp::resolver::iterator</code> 的第二个参数来提供的。</p>
+<p>调用了 <code>async_connect()</code> 方法之后，<code>connect_handler()</code> 会被自动调用。 在该句柄的内部，会访问 ec 对象以检查连接是否已建立。 如果连接是有效的，则对相应的 socket 调用 <code>async_read_some()</code> 方法，启动读数据操作。 为了保存接收到的数据，要提供一个缓冲区作为第一个参数。 在以上例子中，缓冲区的类型是 boost::array，它来自 Boost C++ 库 Array，定义于 boost/array.hpp.</p>
+<p>每当有一个或多个字节被接收并保存至缓冲区时，<code>read_handler()</code> 函数就会被调用。 准确的字节数通过 std::size_t 类型的参数 bytes_transferred 给出。 同样的规则，该句柄应该首先看看参数 ec 以检查有没有接收错误。 如果是成功接收，则将数据写出至标准输出流。</p>
+<p>请留意，<code>read_handler()</code> 在将数据写出至 std::cout 之后，会再次调用 <code>async_read_some()</code> 方法。 这是必需的，因为无法保证仅在一次异步操作中就可以接收到整个网页。 <code>async_read_some()</code> 和 <code>read_handler()</code> 的交替调用只有当连接被破坏时才中止，如当 web 服务器已经传送完整个网页时。 这种情况下，在 <code>read_handler()</code> 内部将报告一个错误，以防止进一步将数据输出至标准输出流，以及进一步对该 socket 调用 <code>async_read()</code> 方法。 这时该例程将停止，因为没有更多的异步操作了。</p>
+<p>上个例子是用来取出 <a href="http://www.highscore.de" target="_blank" rel="noopener">www.highscore.de</a> 的网页的，而下一个例子则示范了一个简单的 web 服务器。 其主要差别在于，这个应用不会连接至其它PC，而是等待连接。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/asio.hpp&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt; </span></span></span><br><span class="line"></span><br><span class="line">boost::asio::io_service io_service; </span><br><span class="line">boost::asio::ip::<span class="function">tcp::endpoint <span class="title">endpoint</span><span class="params">(boost::asio::ip::tcp::v4(), <span class="number">80</span>)</span></span>; </span><br><span class="line">boost::asio::ip::<span class="function">tcp::acceptor <span class="title">acceptor</span><span class="params">(io_service, endpoint)</span></span>; </span><br><span class="line">boost::asio::ip::<span class="function">tcp::socket <span class="title">sock</span><span class="params">(io_service)</span></span>; </span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> data = <span class="string">"HTTP/1.1 200 OK\r\nContent-Length: 13\r\n\r\nHello, world!"</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec, <span class="built_in">std</span>::<span class="keyword">size_t</span> bytes_transferred)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">accept_handler</span><span class="params">(<span class="keyword">const</span> boost::system::error_code &amp;ec)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="keyword">if</span> (!ec) </span><br><span class="line">  &#123; </span><br><span class="line">    boost::asio::async_write(sock, boost::asio::<span class="built_in">buffer</span>(data), write_handler); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  acceptor.<span class="built_in">listen</span>(); </span><br><span class="line">  acceptor.async_accept(sock, accept_handler); </span><br><span class="line">  io_service.<span class="built_in">run</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类型为 <code>boost::asio::ip::tcp::acceptor</code> 的 I/O 对象 acceptor  被初始化为指定的协议和端口号,用于等待从其它PC传入的连接。 初始化工作是通过 endpoint 对象完成的，该对象的类型为 <code>boost::asio::ip::tcp::endpoint</code>，将本例子中的接收器配置为使用端口80来等待 IPv4 的传入连接，这是 WWW 通常所使用的端口和协议。</p>
+<p>接收器初始化完成后，<code>main()</code> 首先调用 <code>listen()</code> 方法将接收器置于接收状态，然后再用 <code>async_accept()</code> 方法等待初始连接。 用于发送和接收数据的 socket 被作为第一个参数传递。</p>
+<p>当一个PC试图建立一个连接时，<code>accept_handler()</code> 被自动调用。 如果该连接请求成功，就执行自由函数 <code>boost::asio::async_write()</code> 来通过 socket 发送保存在 data 中的信息。<code>boost::asio::ip::tcp::socket</code> 还有一个名为 <code>async_write_some()</code> 的方法也可以发送数据；不过它会在发送了至少一个字节之后调用相关联的句柄。 该句柄需要计算还剩余多少字节，并反复调用 <code>async_write_some()</code> 直至所有字节发送完毕。 而使用 <code>boost::asio::async_write()</code> 可以避免这些，因为这个异步操作仅在缓冲区的所有字节都被发送后才结束。</p>
+<p>在这个例子中，当所有数据发送完毕，空函数 write_handler() 将被调用。 由于所有异步操作都已完成，所以应用程序终止。 与其它PC的连接也被相应关闭。</p>
 
-      
 
-      <!-- 归档列表 -->
-
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-5-resolver和endpoint/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-5 resolver和endpoint
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="previous">
+            <a href="/2020/11/28/Boost-Asio的学习-5-resolver和endpoint/" data-toggle="tooltip" data-placement="top" title="Boost Asio的学习-5 resolver和endpoint">&larr; Previous Post</a>
           </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-4-网络编程/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-4 网络编程
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-3-可扩展性与多线程/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-3 可扩展性与多线程
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-2-IO服务与IO对象/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-2 IO服务与IO对象
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/28/Boost-Asio的学习-1-概述/" style="color: #0085a1">
-              <span>
-                Boost Asio的学习-1 概述
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            11-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/11/26/01-C-编程基础/" style="color: #0085a1">
-              <span>
-                01 C++编程基础
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="next">
+            <a href="/2020/11/28/Boost-Asio的学习-3-可扩展性与多线程/" data-toggle="tooltip" data-placement="top" title="Boost Asio的学习-3 可扩展性与多线程">Next Post &rarr;</a>
           </li>
           
         </ul>
+
+        
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Boost Asio的学习-4 网络编程&body=Hi,I found this website and thought you might like it http://yoursite-url/2020/11/28/Boost-Asio的学习-4-网络编程/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+<!-- gitalk start -->
+<!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+<div id="gitalk-container"></div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+<script src="/js/comment/gitalk.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: '',
+    id: 'Sat Nov 28 2020 10:08:01 GMT+0800', // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    perPage: 10 ,
+    pagerDirection: 'last',
+    createIssueManually: false ,
+    language: 'en'
+  });
+  gitalk.render('gitalk-container');
+
+  var gtFolded = () => {
+    setTimeout(function() {
+      let markdownBody = document.getElementsByClassName("markdown-body");
+      let list = Array.from(markdownBody);
+      list.forEach(item => {
+        if (item.clientHeight > 250) {
+          item.classList.add('gt-comment-body-folded');
+          item.style.maxHeight = '250px';
+          item.title = 'Click to Expand';
+          item.onclick = function() {
+            item.classList.remove('gt-comment-body-folded');
+            item.style.maxHeight = '';
+            item.title = '';
+            item.onclick = null;
+          };
+        }
+      })
+    }, 800);
+  }
+</script>
+
+<!-- gitalk end -->
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
       </div>
-      
 
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
 
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
         
-<!-- <h5>VISITORS</h5> -->
-<h5><a href="/">VISITORS</a></h5>
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
     
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#boost asio" title="boost asio" rel="5">boost asio</a>
-    
-    
-    
-    <a href="/tags/#C++" title="C++" rel="1">C++</a>
-    
-    
-    
-    <a href="/tags/#Essential C++" title="Essential C++" rel="1">Essential C++</a>
-    
-    
-    
-    <a href="/tags/#resolve" title="resolve" rel="1">resolve</a>
-    
-    
-    
-    <a href="/tags/#endpoint" title="endpoint" rel="1">endpoint</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/fatpeople.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>on the way</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/altEr1125">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
         
-<!-- <h5>RECENT POSTS</h5> -->
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-5-resolver%E5%92%8Cendpoint/">
-      <li>Boost Asio的学习-5 resolver和endpoint</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-4-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-      <li>Boost Asio的学习-4 网络编程</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-      <li>Boost Asio的学习-3 可扩展性与多线程</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-2-IO%E6%9C%8D%E5%8A%A1%E4%B8%8EIO%E5%AF%B9%E8%B1%A1/">
-      <li>Boost Asio的学习-2 IO服务与IO对象</li>
-    </a>
-    
-    <a href="../2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-1-%E6%A6%82%E8%BF%B0/">
-      <li>Boost Asio的学习-1 概述</li>
-    </a>
-    
-  </ul>
-</div>
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#boost asio" title="boost asio">boost asio</a>
+            
+          </div>
+        </section>
+        
 
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-
-        <hr>
-    
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archives/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="2020/11/">November 2020</a><span class="archive-list-count">6</span></li></ul>
+      </div>
     </div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Boost Asio">
-      <li>Boost Asio</li>
-    </a>
-    
-    <a href="/categories/#Learning C++">
-      <li>Learning C++</li>
-    </a>
-    
-    <a href="/categories/#Essential C++">
-      <li>Essential C++</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-    
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
