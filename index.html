@@ -210,13 +210,6 @@
 
           
           <li>
-            <a href="/about/">About</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/about/">About</a>
           </li>
           
           
@@ -391,7 +391,7 @@
       
     </h3>
     <div class="post-content-preview">
-      tcp::resolver一般和tcp::resolver::query结合用，通过query这个词顾名思义就知道它是用来查询socket的相应信息，一般而言我们关心socket的东西有address，port而已，通过tcp::resolver很容易实现设置和查询，它通过query把字符串格式的ip如192.168.0.200或主机名http://localhost，端口“8080”等转化......
+      tcp::resolver一般和tcp::resolver::query结合用，通过query这个词顾名思义就知道它是用来查询socket的相应信息，一般而言我们关心socket的东西有address，port而已，通过tcp::resolver很容易实现设置和查询，它通过query把字符串格式的ip如192.168.0.200或主机名 http://localhost ，端口8080等转化......
     </div>
   </a>
   
@@ -464,6 +464,44 @@
   
 
 
+  <a href="/2020/11/29/02-面向过程的编程风格/">
+    <h2 class="post-title">
+      02 面向过程的编程风格
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      1.简单了解程序堆栈当我们调用一个函数时，会在内存中建立起一块特殊的区域，称为“程序堆栈(program stack”)。这块特殊区域提供了每个函数参数的储存空间。它也提供了函数所定义的每个对象的内存空间——我们将这些对象称为local object（局部对象）。一旦函数完成，这块内存就会释放掉，或者说是从程序堆栈中被pop出来。
+2.vector作为参数的三种传参方式c++中常用的vect......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by altEr on
+    2020-11-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#C++" title="C++">C++</a>
+    
+    <a href="/tags/#Essential C++" title="Essential C++">Essential C++</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/2020/11/28/Boost-Asio的学习-4-网络编程/">
     <h2 class="post-title">
       Boost Asio的学习-4 网络编程
@@ -472,8 +510,7 @@
       
     </h3>
     <div class="post-content-preview">
-      虽然 Boost.Asio 是一个可以异步处理任何种类数据的库，但是它主要被用于网络编程。 这是由于，事实上 Boost.Asio 在加入其它 I/O 对象之前很久就已经支持网络功能了。 网络功能是异步处理的一个很好的例子，因为通过网络进行数据传输可能会需要较长时间，从而不能直接获得确认或错误条件。
-Boost.Asio 提供了多个 I/O 对象以开发网络应用。 以下例子使用了 boost:......
+      虽然 Boost.Asio 是一个可以异步处理任何种类数据的库，但是它主要被用于网络编程。 这是由于，事实上 Boost.Asio 在加入其它 I/O 对象之前很久就已经支持网络功能了。 网络功能是异步处理的一个很好的例子，因为通过网络进行数据传输可能会需要较长时间，从而不能直接获得确认或错误条件。Boost.Asio 提供了多个 I/O 对象以开发网络应用。 以下例子使用了 boost::......
     </div>
   </a>
   
@@ -586,10 +623,7 @@ Boost官方文档第7章，是介绍Boost C++库Asio的。
 首先要知道什么是异步？什么是同步？
 
 1.概述Asio支持I/O对象进行同步和异步的操作。
-1） 调用者调用I/O对象的connect函数开始连接操作，socket.connect(server_endpoint)；
-2） I/O对象将连接请求传递给io_service；
-3） io_service调用操作系统函数；
-4......
+1） 调用者调用I/O对象的connect函数开始连接操作，socket.connect(server_endpoint)；2） I/O对象将连接请求传递给io_service；3） io_service调用操作系统函数；4） 操......
     </div>
   </a>
   
@@ -657,11 +691,11 @@ Boost官方文档第7章，是介绍Boost C++库Asio的。
     
     
     
-    <a href="/tags/#C++" title="C++" rel="1">C++</a>
+    <a href="/tags/#C++" title="C++" rel="2">C++</a>
     
     
     
-    <a href="/tags/#Essential C++" title="Essential C++" rel="1">Essential C++</a>
+    <a href="/tags/#Essential C++" title="Essential C++" rel="2">Essential C++</a>
     
     
     
@@ -732,6 +766,10 @@ Boost官方文档第7章，是介绍Boost C++库Asio的。
 <div class="widget">
   <ul>
     
+    <a href="2020/11/29/02-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC/">
+      <li>02 面向过程的编程风格</li>
+    </a>
+    
     <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-5-resolver%E5%92%8Cendpoint/">
       <li>Boost Asio的学习-5 resolver和endpoint</li>
     </a>
@@ -746,10 +784,6 @@ Boost官方文档第7章，是介绍Boost C++库Asio的。
     
     <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-2-IO%E6%9C%8D%E5%8A%A1%E4%B8%8EIO%E5%AF%B9%E8%B1%A1/">
       <li>Boost Asio的学习-2 IO服务与IO对象</li>
-    </a>
-    
-    <a href="2020/11/28/Boost-Asio%E7%9A%84%E5%AD%A6%E4%B9%A0-1-%E6%A6%82%E8%BF%B0/">
-      <li>Boost Asio的学习-1 概述</li>
     </a>
     
   </ul>
@@ -767,7 +801,7 @@ Boost官方文档第7章，是介绍Boost C++库Asio的。
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archives/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/11/">November 2020</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/11/">November 2020</a><span class="archive-list-count">7</span></li></ul>
     </div>
 
 

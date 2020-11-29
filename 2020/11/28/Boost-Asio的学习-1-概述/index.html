@@ -210,13 +210,6 @@
 
           
           <li>
-            <a href="/about/">About</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/about/">About</a>
           </li>
           
           
@@ -330,7 +330,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">885</span> In Total
+              Words <span class="post-count">884</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -397,27 +397,11 @@
 <p>首先要知道什么是异步？什么是同步？</p>
 </blockquote>
 <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>Asio支持I/O对象进行同步和异步的操作。<br><img src="asio%E5%90%8C%E6%AD%A5.jpg" alt="asio同步"></p>
-<p>1） 调用者调用I/O对象的connect函数开始连接操作，socket.connect(server_endpoint)；</p>
-<p>2） I/O对象将连接请求传递给io_service；</p>
-<p>3） io_service调用操作系统函数；</p>
-<p>4） 操作系统返回结果给io_service；</p>
-<p>5） io_service将结果以boost::system::error_code类型传递给I/O对象；</p>
-<p>6） I/O对象将结果告诉调用者。</p>
+<p>1） 调用者调用I/O对象的connect函数开始连接操作，socket.connect(server_endpoint)；<br>2） I/O对象将连接请求传递给io_service；<br>3） io_service调用操作系统函数；<br>4） 操作系统返回结果给io_service；<br>5） io_service将结果以boost::system::error_code类型传递给I/O对象；<br>6） I/O对象将结果告诉调用者。</p>
 <p><font color=red>需要注意的是如果用户在第1步中使用socket.connect(server_endpoint)这个函数开始连接操作，那么如果连接过程中出现错误，I/O对象将以抛异常的行为来告诉你出错了（因为它想告诉你出错了，又没有可接收错误的参数），所以没养成写try/catch习惯的朋友需要注意了。当然，我们可以使用socket.connect(server_endpoint, ec) 这个函数就可以避免未捕获异常而导致的程序崩溃问题。变量ec是boost::system::error_code类型，用于接收错误信息。</font></p>
 <p>从上述流程我们可以看出，步骤1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6是个逐层调用及返回的过程，也就是说调用者发出连接请求（1）后就必须等待至所有操作完成后才返回（6），表明这是个同步操作。</p>
 <p><img src="asio%E5%BC%82%E6%AD%A51.jpg" alt="asio异步1"></p>
-<p>1） 和同步操作一样，调用者也是调用I/O对象开始连接操作，只不过函数变成async开头，socket.async_connect(server_endpoint, your_completion_handler);</p>
-<p>注意此处your_completion_handler这个参数，这个handler用于稍后讲到的回调操作。</p>
-<p>2） 和同步操作一样，I/O对象将请求传递给io_service。</p>
-<p>3） 和同步操作一样，io_service调用操作系统函数以执行连接操作。只是此时，io_service告诉系统它要发起一个异步连接请求。</p>
-<p>和同步调用的区别在于，完成3这一步骤之后，当前线程就返回到调用者处。<br>过了一段时间后。。<br><img src="asio%E5%BC%82%E6%AD%A52.jpg" alt="asio异步2"><br>4）操作系统完成连接操作，并把结果放到一个完成队列中。</p>
-<p>5）用户程序必须调用io_service::run()或类似函数，才能从4）中所述的队列中取出结果。</p>
-<p>6）在io_service::run()内部，将结果取出并转化为error_code，并调用传递给1）中所述的回调函数。</p>
-<p><strong>同步VS异步</strong></p>
-<p>1） 同步代码，编写简单，不需要回调函数，且不用考虑烦人的Buffer问题；</p>
-<p>2） 异步代码，线程不会阻塞住，可以去做别的事情，充分利用CPU资源；</p>
-<p>3） 对于客户端而言，操作一般都是顺序的，所以客户端一般采取同步操作。</p>
-<p>4） 对于服务端而言，如果采用同步操作的话，就没有把CPU资源完全利用起来，当然，也可以采用多线程的方式去充分利用CPU资源。比如，对每个请求都建立一条线程与之通信，这样的后果就是会导致线程数量过大（Mongo里面就是这样的，当然连接数有上限），线程数量过大的后果是线程切换的时间浪费。如果采用异步方式的话，服务端只需将异步请求告诉操作系统去执行，自己就可以去忙别的了，当然也只需建立一个或多个工作线程读取完成队列即可。</p>
+<p>1） 和同步操作一样，调用者也是调用I/O对象开始连接操作，只不过函数变成async开头，socket.async_connect(server_endpoint, your_completion_handler);<br>注意此处your_completion_handler这个参数，这个handler用于稍后讲到的回调操作。<br>2） 和同步操作一样，I/O对象将请求传递给io_service。<br>3） 和同步操作一样，io_service调用操作系统函数以执行连接操作。只是此时，io_service告诉系统它要发起一个异步连接请求。<br>和同步调用的区别在于，完成3这一步骤之后，当前线程就返回到调用者处。<br>过了一段时间后。。<br><img src="asio%E5%BC%82%E6%AD%A52.jpg" alt="asio异步2"><br>4）操作系统完成连接操作，并把结果放到一个完成队列中。<br>5）用户程序必须调用io_service::run()或类似函数，才能从4）中所述的队列中取出结果。<br>6）在io_service::run()内部，将结果取出并转化为error_code，并调用传递给1）中所述的回调函数。<br><strong>同步VS异步</strong><br>1） 同步代码，编写简单，不需要回调函数，且不用考虑烦人的Buffer问题；<br>2） 异步代码，线程不会阻塞住，可以去做别的事情，充分利用CPU资源；<br>3） 对于客户端而言，操作一般都是顺序的，所以客户端一般采取同步操作。<br>4） 对于服务端而言，如果采用同步操作的话，就没有把CPU资源完全利用起来，当然，也可以采用多线程的方式去充分利用CPU资源。比如，对每个请求都建立一条线程与之通信，这样的后果就是会导致线程数量过大（Mongo里面就是这样的，当然连接数有上限），线程数量过大的后果是线程切换的时间浪费。如果采用异步方式的话，服务端只需将异步请求告诉操作系统去执行，自己就可以去忙别的了，当然也只需建立一个或多个工作线程读取完成队列即可。</p>
 
 
         <hr>
