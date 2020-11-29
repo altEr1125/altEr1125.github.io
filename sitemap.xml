@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/archive/index.html</loc>
+    
+    <lastmod>2020-11-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/categories/index.html</loc>
     
     <lastmod>2020-11-26</lastmod>
@@ -36,17 +43,10 @@
     
   </url>
   
-  <url>
-    <loc>http://yoursite-url/archive/index.html</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
 
   <url>
     <loc>http://yoursite-url/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -54,14 +54,14 @@
   
   <url>
     <loc>http://yoursite-url/tags/C/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Essential-C/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -70,14 +70,14 @@
   
   <url>
     <loc>http://yoursite-url/categories/Learning-C/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/categories/Learning-C/Essential-C/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
