@@ -210,20 +210,6 @@
 
           
           <li>
-            <a href="/about/">About</a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a href="/categories/">Categories</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +218,20 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/about/">About</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,21 +396,19 @@
 
         <h2 id="什么是ECC"><a href="#什么是ECC" class="headerlink" title="什么是ECC"></a>什么是ECC</h2><p>ECC是Elliptic Curve Cryptography（椭圆曲线密码学）的缩写，是一种基于椭圆曲线数学的公开密钥加密算法，其本质是利用离散对数问题实现加密。<br>ECC的主要优势，是在使用更小的密钥的同时，提供更快的性能和更高等级的安全。</p>
 <h2 id="什么是椭圆曲线"><a href="#什么是椭圆曲线" class="headerlink" title="什么是椭圆曲线!"></a>什么是椭圆曲线!</h2><p>一条椭圆曲线就是一组被 </p>
-<blockquote>
-<p>y² = x³ + ax + b</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y² &#x3D; x³ + ax + b</span><br></pre></td></tr></table></figure>
 <p>定义的且满足</p>
-<blockquote>
-<p>4a^3 + 27b^2 ≠ 0 的点集。</p>
-</blockquote>
-<p>这个限定条件是为了保证曲线不包含奇点（在数学中是指曲线上任意一点都存在切线）。<br><img src="%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" alt="椭圆曲线示例图"><br>++不同的椭圆曲线对应不同的形状（b=1，a从2到-3)++<br><img src="%E9%9D%9E%E6%9C%89%E6%95%88%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF.png" alt="非有效椭圆曲线"><br>++左（带锐点）：y^2 = x^3<br>右（曲线自交）：y^2 = x^3-3x+2<br>都不是有效的椭圆曲线++</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4a^3 + 27b^2 ≠ 0 的点集。</span><br></pre></td></tr></table></figure>
+<p>这个限定条件是为了保证曲线不包含奇点（在数学中是指曲线上任意一点都存在切线）。<br><img src="%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" alt="椭圆曲线示例图"><br><u>不同的椭圆曲线对应不同的形状（b=1，a从2到-3)</u><br><img src="%E9%9D%9E%E6%9C%89%E6%95%88%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF.png" alt="非有效椭圆曲线"><br><u>左（带锐点）：y^2 = x^3</u><br><u>右（曲线自交）：y^2 = x^3-3x+2</u><br><u>都不是有效的椭圆曲线</u></p>
 <h2 id="定义椭圆曲线的运算规则"><a href="#定义椭圆曲线的运算规则" class="headerlink" title="定义椭圆曲线的运算规则"></a>定义椭圆曲线的运算规则</h2><h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>过曲线上的两点A、B画一条直线，找到直线与椭圆曲线的交点，交点关于x轴对称位置的点，定义为A+B，即为加法。如下图所示：A + B = C<br><img src="%E5%8A%A0%E6%B3%95.png" alt="加法"></p>
 <h3 id="二倍运算"><a href="#二倍运算" class="headerlink" title="二倍运算"></a>二倍运算</h3><p>上述方法无法解释A + A，即两点重合的情况。因此在这种情况下，将椭圆曲线在A点的切线，与椭圆曲线的交点，交点关于x轴对称位置的点，定义为A + A，即2A，即为二倍运算。<br><img src="%E4%BA%8C%E5%80%8D%E8%BF%90%E7%AE%97.png" alt="二倍运算"></p>
 <h3 id="正负取反"><a href="#正负取反" class="headerlink" title="正负取反"></a>正负取反</h3><p>将A关于x轴对称位置的点定义为-A，即椭圆曲线的正负取反运算。如下图所示：<br><img src="%E6%AD%A3%E8%B4%9F%E5%8F%96%E5%8F%8D.png" alt="正负取反"></p>
 <h3 id="无穷远点"><a href="#无穷远点" class="headerlink" title="无穷远点"></a>无穷远点</h3><p>如果将A与-A相加，过A与-A的直线平行于y轴，可以认为直线与椭圆曲线相交于无穷远点。</p>
 <p>综上，定义了A+B、2A运算，因此给定椭圆曲线的某一点G，可以求出2G、3G（即G + 2G）、4G……。即：当给定G点时，已知x，求xG点并不困难。反之，已知xG点，求x则非常困难。此即为椭圆曲线加密算法背后的数学原理。</p>
 <h2 id="有限域上的椭圆曲线运算"><a href="#有限域上的椭圆曲线运算" class="headerlink" title="有限域上的椭圆曲线运算"></a>有限域上的椭圆曲线运算</h2><p>椭圆曲线要形成一条光滑的曲线，要求x,y取值均为实数，即实数域上的椭圆曲线,但是并不适合用于加密；所以，我们必须把椭圆曲线变成离散的点，我们要把椭圆曲线定义在有限域上。按数论定义，有限域GF(p)指给定某个质数p，由0、1、2……p-1共p个元素组成的整数集合中定义的加减乘除运算。</p>
-<p>假设椭圆曲线为y² = x³ + x + 1，其在有限域GF(23)上时，写作：　　y² ≡ x³ + x + 1 (mod 23)</p>
+<p>假设椭圆曲线为y² = x³ + x + 1，其在有限域GF(23)上时，写作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y² ≡ x³ + x + 1 (mod 23)</span><br></pre></td></tr></table></figure>
+
 <p>此时，椭圆曲线不再是一条光滑曲线，而是一些不连续的点，如下图所示。以点(1,7)为例，7² ≡ 1³ + 1 + 1 ≡ 3 (mod 23)。如此还有如下点：</p>
 <p>(0,1) (0,22)　　(1,7) (1,16)　　(3,10) (3,13)　　(4,0)　　(5,4) (5,19)　　(6,4) (6,19)　　(7,11) (7,12)　　(9,7) (9,16)　　(11,3) (11,20)　　等等。</p>
 <p>另外，如果P(x,y)为椭圆曲线上的点，则-P即(x,-y)也为椭圆曲线上的点。如点P(0,1)，-P=(0,-1)=(0,22)也为椭圆曲线上的点。<br><img src="%E6%9C%89%E9%99%90%E5%9F%9F%E4%B8%8A%E7%9A%84%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E8%BF%90%E7%AE%97.png" alt="有限域上的椭圆曲线运算"></p>
