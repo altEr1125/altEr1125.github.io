@@ -210,14 +210,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/about/">About</a>
           </li>
           
           
 
           
           <li>
-            <a href="/about/">About</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -427,8 +427,10 @@
 </blockquote>
 <h2 id="计算xG"><a href="#计算xG" class="headerlink" title="计算xG"></a>计算xG</h2><p>相关公式如下：　　有限域GF(p)上的椭圆曲线y² = x³ + ax + b，若P(Xp, Yp), Q(Xq, Yq)，且P≠-Q，则R(Xr,Yr) = P+Q 由如下规则确定：<br>Xr = (λ² - Xp - Xq) mod p<br>Yr = (λ(Xp - Xr) - Yp) mod p　　<br>其中λ = (Yq - Yp)/(Xq - Xp) mod p（若P≠Q）<br>λ = (3Xp² + a)/2Yp mod p（若P=Q）</p>
 <p>因此，有限域GF(23)上的椭圆曲线y² ≡ x³ + x + 1 (mod 23)，假设以(0,1)为G点，计算2G、3G、4G…xG等等，方法如下：</p>
-<p>计算2G：　　λ = (3x0² + 1)/2x1 mod 23 = (1/2) mod 23 = 12　　Xr = (12² - 0 - 0) mod 23 = 6　　Yr = (12(0 - 6) - 1) mod 23 = 19　　即2G为点(6,19)</p>
-<p>计算3G：　　3G = G + 2G，即(0,1) + (6,19)　　λ = (19 - 1)/(6 - 0) mod 23 = 3　　Xr = (3² - 0 - 6) mod 23 = 3　　Yr = (3(0 - 3) - 1) mod 23 = 13　　即3G为点(3, 13)</p>
+<p>计算2G：</p>
+<p>​    λ = (3x0² + 1)/2x1 mod 23 = (1/2) mod 23 = 12　　Xr = (12² - 0 - 0) mod 23 = 6　　Yr = (12(0 - 6) - 1) mod 23 = 19　　即2G为点(6,19)</p>
+<p>计算3G：</p>
+<p>​    3G = G + 2G，即(0,1) + (6,19)　　λ = (19 - 1)/(6 - 0) mod 23 = 3　　Xr = (3² - 0 - 6) mod 23 = 3　　Yr = (3(0 - 3) - 1) mod 23 = 13　　即3G为点(3, 13)</p>
 <p>同理计算4G、5G…xG，分布如下图：　　<br><img src="nG.png" alt="nG"></p>
 <h2 id="椭圆曲线加密"><a href="#椭圆曲线加密" class="headerlink" title="椭圆曲线加密"></a>椭圆曲线加密</h2><p>考虑K=kG，其中K、G为椭圆曲线Ep(a,b)上的点，n为G的阶（nG=O∞ ），k为小于n的整数。则给定k和G，根据加法法则，计算K很容易但反过来，给定K和G，求k就非常困难。因为实际使用中的ECC原则上把p取得相当大，n也相当大，要把n个解点逐一算出来列成上表是不可能的。这属于椭圆曲线上的<strong>离散对数问题</strong>。这就是椭圆曲线加密算法的数学依据</p>
 <p>点G称为基点（base point）<br>k（k&lt;n）为私有密钥（privte key）<br>K为公开密钥（public key)</p>
