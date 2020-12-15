@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite-url/2020/12/15/To-me/</loc>
+    <lastmod>2020-12-15</lastmod>
+  </url>
+  <url>
     <loc>http://yoursite-url/2020/12/03/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-12-03</lastmod>
   </url>
